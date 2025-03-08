@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlx3a45lvi3vt"]
+
+[ext_resource type="Script" path="res://galaxy.gd" id="1_ado6m"]
+[ext_resource type="PackedScene" uid="uid://bgjlm8sseusup" path="res://Solar_system.tscn" id="2_arbw3"]
+[ext_resource type="PackedScene" uid="uid://b2vup55ggh2sc" path="res://Star.tscn" id="2_ii4b5"]
+[ext_resource type="PackedScene" uid="uid://q24w1p6gnk4h" path="res://space_ship.tscn" id="4_u6hij"]
+
+[node name="Galaxy" type="Node3D"]
+script = ExtResource("1_ado6m")
+BlackHole = ExtResource("2_ii4b5")
+StarScene = ExtResource("2_arbw3")
+star_count = 20
+galaxy_radius = 100.0
+
+[node name="SpaceShip" parent="." instance=ExtResource("4_u6hij")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 200, 0, 0)

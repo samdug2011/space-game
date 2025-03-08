@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://1y756x2lrklg"]
+
+[ext_resource type="Script" path="res://solar_system_creation.gd" id="1_0ol26"]
+[ext_resource type="PackedScene" uid="uid://b2vup55ggh2sc" path="res://Star.tscn" id="2_4xvso"]
+
+[node name="SolarSystemCreation" type="Node3D"]
+script = ExtResource("1_0ol26")
+BlackHole = ExtResource("2_4xvso")
+StarScene = ExtResource("2_4xvso")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 100, 0)

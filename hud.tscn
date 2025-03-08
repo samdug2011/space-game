@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://br73s5uxy3si1"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_o0203"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1j08"]
+font_size = 48
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_o0203")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBox" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Speed" type="Label" parent="Margin/HBox"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_m1j08")

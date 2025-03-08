@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://3wxde5l2rgiq"]
+
+[ext_resource type="PackedScene" uid="uid://d2vnq6aw8hmbp" path="res://Pancake/glTF/Pancake.gltf" id="1_mspr5"]
+
+[node name="Pancake2" instance=ExtResource("1_mspr5")]

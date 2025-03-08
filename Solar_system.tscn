@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjlm8sseusup"]
+
+[ext_resource type="PackedScene" uid="uid://vqdqbyjydgmm" path="res://sun.tscn" id="1_g8yx6"]
+[ext_resource type="PackedScene" uid="uid://d27sdk1kg4jfy" path="res://planet.tscn" id="2_3yora"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Sun" parent="." instance=ExtResource("1_g8yx6")]
+
+[node name="planet2" parent="." instance=ExtResource("2_3yora")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
