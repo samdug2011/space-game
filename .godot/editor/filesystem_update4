@@ -1,5 +1,10 @@
-res://planet.tscn
-res://Solar_system.tscn
-res://hud.tscn
 res://space_ship.tscn
+res://space_ship.gd
+res://spaceship_hud.tscn
+res://Solar_system.tscn
 res://galaxy.tscn
+res://planet.tscn
+res://spaceship_hud.gd
+res://projectile.tscn
+res://projectile.gd
+res://mesh_helper.gd

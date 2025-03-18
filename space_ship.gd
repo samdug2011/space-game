@@ -1,14 +1,17 @@
 extends CharacterBody3D
 
 @export var max_speed: float = 50.0
-@export var acceleration = 0.6
+@export var acceleration = 0.9
+@export var rotate_speed = 0.9
 @export var mouse_sensitivity : float = 0.001
+var target = null
 signal speed_changed
 
 var mouseInput : Vector2 = Vector2(0,0)
 
 
 var forward_speed = 0
+var rotation_z = 0
 func _ready():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 func _unhandled_input(event : InputEvent):
@@ -22,6 +25,14 @@ func get_input(delta):
 		forward_speed += acceleration*delta
 	if Input.is_action_pressed("throttle_down"):
 		forward_speed -= 3*acceleration*delta
+	if Input.is_action_pressed("rotate_z_-"):
+		rotation_z = -rotate_speed*delta
+	if Input.is_action_pressed("rotate_z_+"):
+		rotation_z = rotate_speed*delta
+	if Input.is_action_pressed("target"):
+		$RayCast3D.force_raycast_update()
+		var collider = $RayCast3D.get_collider()
+		target = collider
 	if Input.is_action_just_pressed("esc_mouse"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -33,9 +44,14 @@ func get_input(delta):
 
 func _physics_process(delta):
 	get_input(delta)
-	transform.basis = transform.basis.rotated(transform.basis.y.normalized(), mouseInput.x * mouse_sensitivity)
-	transform.basis = transform.basis.rotated(transform.basis.x.normalized(), -mouseInput.y * mouse_sensitivity)
+	if target:
+		look_at(target)
+	else:
+		transform.basis = transform.basis.rotated(transform.basis.y.normalized(), mouseInput.x * mouse_sensitivity)
+		transform.basis = transform.basis.rotated(transform.basis.x.normalized(), -mouseInput.y * mouse_sensitivity)
+		transform.basis = transform.basis.rotated(transform.basis.z.normalized(), rotation_z)
 	velocity = transform.basis.z * forward_speed
 	speed_changed.emit(forward_speed)
 	mouseInput = Vector2(0,0)
+	rotation_z = 0
 	move_and_collide(velocity * delta)

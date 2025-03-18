@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://q24w1p6gnk4h"]
+[gd_scene load_steps=8 format=3 uid="uid://q24w1p6gnk4h"]
 
 [ext_resource type="Script" path="res://space_ship.gd" id="1_iybiv"]
 [ext_resource type="PackedScene" uid="uid://d2vnq6aw8hmbp" path="res://Pancake/glTF/Pancake.gltf" id="2_6k1o1"]
+[ext_resource type="PackedScene" uid="uid://br73s5uxy3si1" path="res://spaceship_hud.tscn" id="3_mqbhp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5h8vg"]
+radius = 0.004
+height = 0.008
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jujpw"]
 points = PackedVector3Array(4.00059, 0.108265, 1.49939, 3.33367, 0.274917, 1.99919, 2.50082, -1.0583, 4.83212, 1.5008, 0.108265, 4.49862, 1.66747, 0.441717, 0.332141, 2.50082, -1.0583, 0.332141, 4.00059, -0.225041, 0.332141, 1.66747, -1.0583, 4.99933, 2.50082, -0.225041, 4.83212, 1.48345, -0.392702, 0.29975, 3.66701, 0.274917, 0.332141, 2.16748, 0.274917, 3.66532, 1.66747, -1.0583, 0.665642, 1.5008, -0.891505, 4.99933, 3.83368, -0.391547, 1.49939, 1.47856, 0.285297, 0.290608, 2.33415, 0.441717, 0.665642, 1.5008, 0.274917, 3.83207, 1.5008, -0.225041, 4.99933, 2.66749, -0.891505, 4.66537, 2.66749, -0.225041, 4.66537, 4.00059, -0.225041, 1.49939, 2.33415, 0.108265, 4.16512, 2.00081, -0.225041, 4.99933, 3.83368, -0.391547, 0.332141, 3.33367, -0.225041, 3.16507, 3.66701, 0.274917, 1.16589, 3.93619, 0.0868, 0.452387, 1.66747, 0.441717, 0.832392, 2.00081, -1.0583, 4.99933, 1.66747, 0.108265, 4.49862, 2.33415, 0.441717, 0.332141)
@@ -17,8 +22,16 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 motion_mode = 1
 script = ExtResource("1_iybiv")
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.24517e-08, 0, 0.513635)
+target_position = Vector3(0, -100000, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.35188e-23, 0, 8.35188e-23, 1, -4.91569e-10, 0.0112458, 4.91569e-10)
+mesh = SubResource("CapsuleMesh_5h8vg")
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, 0.00646996, 0.422219, -1.00287)
+transform = Transform3D(-1, -2.71036e-08, 8.37724e-08, -1.80962e-08, 0.994397, 0.105709, -8.61682e-08, 0.105709, -0.994397, -1.29776e-08, 0.315308, -0.796894)
 
 [node name="Pancake2" parent="." instance=ExtResource("2_6k1o1")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -37,3 +50,7 @@ disabled = true
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_40c3t")
 disabled = true
+
+[node name="SpaceShip_HUD" parent="." instance=ExtResource("3_mqbhp")]
+
+[connection signal="speed_changed" from="." to="SpaceShip_HUD" method="update_speed"]

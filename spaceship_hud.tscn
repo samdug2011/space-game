@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://br73s5uxy3si1"]
+[gd_scene load_steps=4 format=3 uid="uid://br73s5uxy3si1"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_o0203"]
+[ext_resource type="Script" path="res://spaceship_hud.gd" id="1_ly3wt"]
+[ext_resource type="Texture2D" uid="uid://cghen8d2t2jkq" path="res://target.png" id="2_ydr1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m1j08"]
 font_size = 48
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_o0203")
+[node name="SpaceShip_HUD" type="CanvasLayer"]
+script = ExtResource("1_ly3wt")
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchors_preset = 12
@@ -30,3 +31,18 @@ layout_mode = 2
 [node name="Speed" type="Label" parent="Margin/HBox"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_m1j08")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.951544, 1)
+
+[node name="Target" type="Sprite2D" parent="Control"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ydr1s")
